@@ -1,30 +1,77 @@
-# PredictiveMaintenance-ML
-This project leverages machine learning techniques to predict potential failures in industrial machinery, enabling proactive maintenance and minimizing unplanned downtime. By analyzing sensor data, the model identifies patterns that signal wear, faults, or impending breakdowns.
+# Predictive Maintenance of Industrial Machinery
 
-🚀 **Key Features**
+![Python](https://img.shields.io/badge/python-3.13+-blue.svg)
+![Streamlit](https://img.shields.io/badge/streamlit-v1.32+-red.svg)
+![Scikit-Learn](https://img.shields.io/badge/scikit--learn-v1.4+-orange.svg)
 
-Real-time failure prediction using ML classification/regression models
+Predictive maintenance is a key component of Industry 4.0, using machine learning to predict equipment failures before they occur. This project implements a multiclass classification system to identify specific types of machine failures using sensor data.
 
-Preprocessing and analysis of time-series sensor data
+## 🚀 Features
 
-Model performance evaluation with precision, recall, F1-score, and accuracy
+- **EDA**: Comprehensive data exploration in Jupyter Notebooks.
+- **Preprocessing**: Automated cleaning, encoding, and scaling pipeline.
+- **Feature Engineering**: Creation of domain-specific features (`temp_diff`, `power`, `wear_torque`).
+- **Class Imbalance**: Handled using **SMOTE** (Synthetic Minority Over-sampling Technique) to address highly imbalanced failure classes.
+- **Model Comparison**: Automated training and evaluation of **Random Forest** and **XGBoost**.
+- **Interactive App**: A **Streamlit** dashboard for real-time failure prediction.
 
-Visualizations for data insights and predictions
+## 📊 Models & Performance
 
-📁 **Project Structure**
+| Model | Accuracy | F1-Macro | Status |
+| :--- | :--- | :--- | :--- |
+| **Random Forest** | **94.3%** | **0.664** | **Winner** |
+| XGBoost | 93.8% | 0.642 | - |
 
-data/ – Raw and cleaned sensor datasets
+The Random Forest model was selected as the winner due to better generalization across minority failure classes.
 
-notebooks/ – Jupyter notebooks for data exploration and model training
+## 📂 Project Structure
 
-models/ – Trained models and evaluation results
+```text
+PredictiveMaintenance-ML/
+├── app/
+│   └── app.py              # Streamlit Web Application
+├── data/
+│   └── predictive_maintenance.csv  # Dataset
+├── models/                 # Saved models, scalers, and plots
+├── notebooks/
+│   ├── 01_EDA.ipynb        # Exploratory Data Analysis
+│   └── 02_model_training.ipynb     # Model training experiments
+├── src/
+│   ├── preprocess.py       # Data cleaning and balancing
+│   ├── train.py            # Model training and selection
+│   └── predict.py          # Inference logic
+├── requirements.txt        # Project dependencies
+└── README.md
+```
 
-src/ – Scripts for preprocessing, training, and inference
+## 🛠️ Installation & Usage
 
-📊 **Use Cases**
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/PredictiveMaintenance-ML.git
+cd PredictiveMaintenance-ML
+```
 
-Manufacturing plants
+### 2. Set up virtual environment
+```bash
+python -m venv .venv
+.venv\Scripts\activate
+```
 
-Heavy industrial equipment monitoring
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
 
-Smart factory automation systems
+### 4. Train the models
+```bash
+python -m src.train
+```
+
+### 5. Run the Streamlit app
+```bash
+streamlit run app/app.py
+```
+
+## 📝 Dataset
+The project uses the [Kaggle Machine Predictive Maintenance Classification](https://www.kaggle.com/datasets/shivamb/machine-predictive-maintenance-classification) dataset consisting of 10,000 data points with 10 features.
